@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+    image: "mariadb"
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+    volumes:
+      - "my-datavolume:/var/lib/mysql"
+  wp:
+    image: "wordpress"
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_PASSWORD: supersecret
+  
+volumes:
+  my-datavolume:

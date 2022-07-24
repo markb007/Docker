@@ -1,0 +1,19 @@
+# Include official mysql image
+FROM mysql
+# Add a database to our environment
+ENV MYSQL_DATABASE users
+# Add the content of our sql-scripts/ directory to the image
+# All scripts in docker-entrypoint-initdb.d/ are automatically
+# executed during container startup. This way we can create and populate the database
+COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
+
+# the following are run to create the container
+sudo mkdir -p /storage/docker/mysql2-datadir
+sudo docker run \
+--detach \
+--name=test-mysql \
+--env="MYSQL_ROOT_PASSWORD=mypassword" \
+--publish 6603:3306 \
+--volume=/root/docker/test-mysql/conf.d:/etc/mysql/conf.d \
+--volume=/storage/docker/mysql2-datadir:/var/lib/mysql \
+markb007/mysql

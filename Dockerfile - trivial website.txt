@@ -1,0 +1,7 @@
+FROM ubuntu:20.04
+LABEL maintainer="mark.brown.666@gmail.com"
+RUN apt-get update; apt-get install -y nginx
+COPY index.html /var/www/html/index.html
+RUN echo '<h1>This is the second page of the website - how to Contact Us</h1>' \
+    >/var/www/html/contact.html
+EXPOSE 80

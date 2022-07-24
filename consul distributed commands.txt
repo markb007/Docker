@@ -1,0 +1,18 @@
+larry 
+
+
+docker run --dns=$PUBLIC_IP -h $HOSTNAME -d --name larry_distributed \
+jamtur01/distributed_app
+
+
+curly
+
+docker run --dns=$JOIN_IP -h $HOSTNAME -d --name curly_distributed \
+jamtur01/distributed_app
+
+
+moe
+
+
+docker run -ti --dns=$JOIN_IP --name moe_distributed_client jamtur01/distributed_client
+
